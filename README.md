@@ -2,6 +2,7 @@
 ## flago
 
 command-line flag parser
+[![Build Status](https://travis-ci.org/gazitt/flago.svg?branch=master)](https://travis-ci.org/gazitt/flago)
 
 ## Features
 
