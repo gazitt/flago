@@ -1,7 +1,7 @@
 
 # flago
 
-Command line options/flags parser
+command-line flag parser
 
 <br/>
 
