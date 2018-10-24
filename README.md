@@ -3,25 +3,19 @@
 
 command-line flag parser
 
-<br/>
-
-# Features
+## Features
 
 * Options with long and short names
 * Supports callback function
 * Supports sub command
 
-<br/>
-
-# Installation
+## Installation
 
 ```
 $ go get github.com/gazitt/flago
 ```
 
-<br/>
-
-# Command line flag syntax
+## Command line flag syntax
 
 ```
 
@@ -45,9 +39,7 @@ $ command other -a other -b other -c other
 
 ```
 
-<br/>
-
-# Usage
+## Usage
 
 ```go
 
@@ -112,16 +104,12 @@ func main() {
 
 ```
 
-<br/>
-
 * Not using short flag
 
 ```go
 // Specify less than to 1
 flago.BoolVar(&o.Bool, "bool-flag", 0, false, "description", nil)
 ```
-
-<br/>
 
 * Callback function
 
@@ -140,9 +128,7 @@ flago.String("string-number", 'n', "", "description", func(v flago.Value) error 
 })
 ```
 
-<br/>
-
-* SubCommand
+* Sub-command
 
 ```go
 flago.BoolVarSubCommand(&o.Init.Flag, "init", -1, "description",
