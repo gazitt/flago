@@ -34,7 +34,7 @@ $ go get github.com/gazitt/flago
 // subcommand
 $ command init -a -b -c
 
-// there are other values in before a flag, does not end
+// even if there are other values before the flag, it does not end
 $ command other -a other -b other -c other
 
 ```
