@@ -596,6 +596,7 @@ func TestAddSubCommandName(t *testing.T) {
 	var B, C, D bool
 	const Name = "Test Add Sub Command Name"
 	args := []string{"A", "B", "C", "D"}
+	expect := fmt.Sprintf("%s %s", Name, strings.Join(args, " "))
 
 	ResetForTesting(nil)
 	CommandLine.Init(Name, ContinueOnError)
@@ -609,7 +610,6 @@ func TestAddSubCommandName(t *testing.T) {
 	)
 
 	CommandLine.Parse(args)
-	expect := fmt.Sprintf("%s %s", Name, strings.Join(args, " "))
 	actual := CommandLine.Name()
 	if actual != expect {
 		t.Errorf("\ngot : %s, want: %s\n", actual, expect)

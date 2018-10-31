@@ -127,6 +127,20 @@ func (f *FlagSet) parseOne() error {
 		} // end switch
 
 	} else {
+		flag, ok := f.flags[v]
+		// long name also may be one letter
+		// so, find as a short name in case of not OK
+		if !ok && len(v) == 1 {
+			flag, ok = f.flags[aliasToKey(rune(v[0]))]
+		}
+
+		if ok && flag.IsSubCommand() {
+			f.cut()
+			f.addSubCommandName(flag.Name)
+			f.flags = flag.flags
+			return flag.Value.Set("true")
+		}
+
 		f.index++
 	}
 
@@ -136,48 +150,9 @@ func (f *FlagSet) parseOne() error {
 // Parse parses flag definitions from the argument list
 func (f *FlagSet) Parse(arguments []string) error {
 	f.parsed = true
+	f.args = arguments
 	f.index = 0
 
-	var index int
-	// when a sub-command continues to be at the beginning of arguments,
-	// sets a flags to the f.flags again
-	for _, v := range arguments {
-		flag, ok := f.flags[v]
-
-		// long name also may be one letter
-		// so, find as a short name in case of not OK
-		if !ok && len(v) == 1 {
-			flag, ok = f.flags[aliasToKey(rune(v[0]))]
-		}
-
-		if ok && flag.IsSubCommand() {
-			f.addSubCommandName(flag.Name)
-			if err := flag.Value.Set("true"); err != nil {
-				switch f.errorHandling {
-				case ContinueOnError:
-					return err
-				case ExitOnError:
-					os.Exit(2)
-				case PanicOnError:
-					panic(err)
-				}
-			}
-
-			f.flags = flag.flags
-			index++
-			continue
-		}
-
-		break
-	}
-
-	if index > 0 {
-		f.args = arguments[index:]
-	} else {
-		f.args = arguments
-	}
-
-	// parses!
 	for f.index < len(f.args) {
 		err := f.parseOne()
 
