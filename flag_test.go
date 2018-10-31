@@ -390,7 +390,7 @@ const defaultOutput = `Options:
       --Z               an int that defaults to zero
       --maxT            set timeout for dial
 
-Command:
+Commands:
    A,   subcmdA         A subcommand
 
 `
@@ -400,7 +400,7 @@ const subCmdAOutput = `Options:
   -b, --subflagB        b subflag
       --subflagC        c subflag
 
-Command:
+Commands:
    B,   subcmdB         B subcommand nested
 
 `

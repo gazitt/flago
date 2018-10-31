@@ -197,7 +197,7 @@ func (f *FlagSet) PrintDefaults() {
 		s += fmt.Sprintf("Options:\n%s", options)
 	}
 	if len(command) > 0 {
-		s += fmt.Sprintf("\nCommand:\n%s", command)
+		s += fmt.Sprintf("\nCommands:\n%s", command)
 	}
 
 	fmt.Fprintln(f.Output(), s)

@@ -38,6 +38,7 @@ $ go get github.com/gazitt/flago
 
 // subcommand
 $ command init -a -b -c
+$ command -a -b init -c -d
 
 // even if there are other values before the flag, it does not end
 $ command other -a other -b other -c other
